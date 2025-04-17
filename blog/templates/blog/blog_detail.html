@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ blog.title }}</title>
+</head>
+<body>
+    <h1>{{ blog.title }}</h1>
+    <p>Author: {{ blog.author }}</p>
+    <p>Date: {{ blog.publication_date }}</p>
+    <p>{{ blog.content }}</p>
+
+    <h2>Countries Data (API Integration)</h2>
+    {% if countries %}
+        <ul>
+            {% for country in countries %}
+                <li>{{ country.name.common }}</li>
+
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Could not load countries data.</p>
+    {% endif %}
+</body>
+</html>
