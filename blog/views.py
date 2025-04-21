@@ -1,6 +1,6 @@
+import requests
 from django.shortcuts import render, get_object_or_404
 from .models import Blog
-import requests  # To make API requests
 
 def blog_list(request):
     blogs = Blog.objects.all()
@@ -9,13 +9,21 @@ def blog_list(request):
 def blog_detail(request, blog_id):
     blog = get_object_or_404(Blog, pk=blog_id)
 
-    #  API Integration (Example with restcountries.com)
+    countries_data = []
     try:
-        response = requests.get('https://restcountries.com/v3.1/all')
-        response.raise_for_status()  # Raise an exception for bad status codes
-        countries_data = response.json()
+        response = requests.get('https://api.worldbank.org/v2/country?format=json')
+        print(f"Response Status Code: {response.status_code}")
+
+        if response.status_code == 200:
+            countries_data = response.json()[1]  # The second element contains country data
+            print(f"Countries data fetched: {countries_data[:5]}")
+        else:
+            print(f"API request failed with status code: {response.status_code}")
+            print(f"Response Body: {response.text}")
     except requests.exceptions.RequestException as e:
-        countries_data = None
         print(f"Error fetching countries data: {e}")
+
+    if not countries_data:
+        print("No countries data available.")
 
     return render(request, 'blog/blog_detail.html', {'blog': blog, 'countries': countries_data})
