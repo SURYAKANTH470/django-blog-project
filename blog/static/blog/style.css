@@ -1,0 +1,260 @@
+/* Basic Styling */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #e0e0e0;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.navbar-user {
+    margin-right: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Search Bar Styling */
+.search-bar {
+    text-align: center;
+    padding: 10px;
+}
+
+.search-bar input[type="text"] {
+    padding: 8px;
+    width: 300px;
+}
+
+/* Blog List Styling */
+.blog-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.blog-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 15px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.blog-card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.blog-card p {
+    color: #666;
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+.read-more {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    text-align: right;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* Blog Detail Styling */
+.blog-detail-container {
+    background-color: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.blog-detail-container h1 {
+    margin-top: 0;
+}
+
+.blog-detail-container p {
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Registration Page Styling */
+.container {
+    width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    text-align: center;
+    color: #333;
+}
+
+.container form {
+    margin-bottom: 15px;
+}
+
+.container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.container input[type="text"],
+.container input[type="password"],
+.container input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.container button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.container button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.container p {
+    text-align: center;
+    color: #666;
+}
+
+.container a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.container a:hover {
+    text-decoration: underline;
+}
+
+.messages {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.messages li {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Country Info (Example) */
+.country-info {
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+}
+
+.country-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.country-info li {
+    margin-bottom: 5px;
+}
+/* Navbar Styling */
+.navbar {
+    background-color: #fff; /* White background for the navbar */
+    padding: 15px 20px; /* Vertical and horizontal padding */
+    display: flex;
+    justify-content: space-between; /* Space out items (Home, Login, Register) */
+    align-items: center; /* Vertically align items */
+    border-bottom: 1px solid #eee; /* Light border at the bottom */
+    margin-bottom: 20px; /* Space below the navbar */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #333; /* Dark grey link color */
+    margin-right: 15px; /* Spacing between links */
+    font-weight: bold; /* Make links bold */
+}
+
+.navbar a:hover {
+    color: #007bff; /* Blue hover color for links */
+}
+
+.navbar .register-btn { /* Style for the Register button */
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+    border: none;
+    padding: 10px 15px; /* Button padding */
+    border-radius: 5px; /* Slightly rounded corners */
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.navbar .register-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+/* Base Styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f4f4f4; /* Light grey background for the entire page */
+    color: #333; /* Dark grey default text color */
+}
+
+.app {
+    max-width: 1200px; /* Adjust this value to control the maximum width of your content */
+    margin: 20px auto; /* Centers the content horizontally with some top/bottom margin */
+    padding: 20px; /* Adds some spacing around the content within the app container */
+    background-color: #fff; /* Optional: Add a white background to the main content area */
+    border-radius: 8px; /* Optional: Add rounded corners to the main content area */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Optional: Subtle shadow */
+}
+
+/* ... (Your existing navbar styles and other styles should remain) ... */

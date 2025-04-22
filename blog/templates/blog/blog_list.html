@@ -1,17 +1,58 @@
 <!DOCTYPE html>
 <html>
+   
 <head>
-    <title>Blog List</title>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+        <title>Blog app</title>
+    </head>
+    
+    
 </head>
 <body>
-    <h1>Blog List</h1>
-    {% for blog in blogs %}
-        <div>
-            <h2><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a></h2>
-            <p>{{ blog.content|truncatechars:100 }}</p>
-            <p>Author: {{ blog.author }}</p>
-            <p>Date: {{ blog.publication_date }}</p>
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        {% if user.is_authenticated %}
+            <span class="navbar-user">{{ user.email }}</span>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}" class="register-btn">Register</a>
+        {% endif %}
+    </div>
+
+    <div class="search-bar">
+        <form action="" method="get">
+            <input type="text" name="q" placeholder="Search blogs..." value="{{ query|default_if_none:'' }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="blog-container">
+        {% for blog in blogs %}
+            <div class="blog-card">
+                <h2>{{ blog.title }}</h2>
+                <p>{{ blog.content|truncatechars:150 }}</p>
+                <a href="{% url 'blog_detail' blog.pk %}" class="read-more">Read More</a>
+            </div>
+        {% empty %}
+            <p>No blogs found matching your search.</p>
+        {% endfor %}
+    </div>
+
+    {% if countries %}
+        <div class="country-info">
+            <h3>Country Information (Example - Adapt as needed)</h3>
+            <ul>
+                {% for country in countries|slice:":5" %}
+                    <li>{{ country.name.common }} - Region: {{ country.region }}</li>
+                {% endfor %}
+            </ul>
         </div>
-    {% endfor %}
+    {% endif %}
 </body>
 </html>

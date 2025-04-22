@@ -1,29 +1,30 @@
 import requests
 from django.shortcuts import render, get_object_or_404
 from .models import Blog
+from django.db.models import Q
+from django.http import HttpResponse
+
+def test_form_submission(request):
+    if request.method == 'POST':
+        return HttpResponse("Form submitted successfully!")
+    return HttpResponse("This is a test form page.")
 
 def blog_list(request):
     blogs = Blog.objects.all()
-    return render(request, 'blog/blog_list.html', {'blogs': blogs})
+    query = request.GET.get('q')
+    if query:
+        blogs = blogs.filter(Q(title__icontains=query) | Q(content__icontains=query))
 
-def blog_detail(request, blog_id):
-    blog = get_object_or_404(Blog, pk=blog_id)
-
-    countries_data = []
     try:
-        response = requests.get('https://api.worldbank.org/v2/country?format=json')
-        print(f"Response Status Code: {response.status_code}")
-
-        if response.status_code == 200:
-            countries_data = response.json()[1]  # The second element contains country data
-            print(f"Countries data fetched: {countries_data[:5]}")
-        else:
-            print(f"API request failed with status code: {response.status_code}")
-            print(f"Response Body: {response.text}")
+        response = requests.get('https://restcountries.com/v3.1/all')
+        response.raise_for_status()
+        countries = response.json()
     except requests.exceptions.RequestException as e:
-        print(f"Error fetching countries data: {e}")
+        countries = []
+        print(f"Error fetching countries: {e}")
 
-    if not countries_data:
-        print("No countries data available.")
+    return render(request, 'blog/blog_list.html', {'blogs': blogs, 'query': query, 'countries': countries, 'user': request.user}) # Pass the user to the template
 
-    return render(request, 'blog/blog_detail.html', {'blog': blog, 'countries': countries_data})
+def blog_detail(request, pk):
+    blog = get_object_or_404(Blog, pk=pk)
+    return render(request, 'blog/blog_detail.html', {'blog': blog})
